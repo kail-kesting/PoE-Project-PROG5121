@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package poe.part1;
 
 /**
@@ -14,26 +10,28 @@ public class Registration {
     String passWord;
     String cellPhone;
      
-    public boolean checkUserName(String username) { //start of username method
-        int length = username.length();
-        return username.contains("@") && length <= 6;
-    } //end of username method
+    // Checks that username contains an underscore (_) and is no more than 5 characters long
+    public boolean checkUserName(String username) { 
+        return username != null && username.contains("_") && username.length() <= 5;
+    } 
     
-    public boolean checkPasswordComplexity(String password) { //start of password method
-        return password.length() >= 8
+    // Checks password complexity (>=8 chars, uppercase, lowercase, digit, special char)
+    public boolean checkPasswordComplexity(String password) { 
+        return password != null 
+                && password.length() >= 8
                 && password.matches(".*[A-Z].*")
                 && password.matches(".*[a-z].*")
                 && password.matches(".*\\d.*")
-                && password.matches(".*[^a-zA-Z0-9].*"); //end of password method
+                && password.matches(".*[^a-zA-Z0-9].*"); 
     }
     
-    public boolean checkCellPhoneNumber(String cellphone) { //start of cellphone method
-        return cellphone.matches(".*\\+27[0-9]{12}$") || cellphone.matches(".*^0[0-9]{12}") || cellphone.length() ==12;
-    } //end of cellphone method
+    // Checks that cellphone contains international code (+27) or starts with 0 and has 10 digits total
+    public boolean checkCellPhoneNumber(String cellphone) { 
+        return cellphone != null && (cellphone.matches("^\\+27[0-9]{9}$") || cellphone.matches("^0[0-9]{9}$"));
+    } 
     
-    public String registerUser(String username,
-            String password,
-            String cellphone) {
+    // Registers user if all conditions are met and returns expected message
+    public String registerUser(String username, String password, String cellphone) {
         
         if (checkUserName(username)
                 && checkPasswordComplexity(password)
@@ -43,15 +41,16 @@ public class Registration {
             this.passWord = password;
             this.cellPhone = cellphone;
             
-            return "Registration was successful";
+            return "User registered successfully.";
         } else {
             return "Registration was unsuccessful";
         }
     }
+
     public boolean registerStatus(String username, String password, String cellphone) {
         return checkUserName(username) && 
                 checkPasswordComplexity(password) &&
-                checkCellPhoneNumber (cellphone);
+                checkCellPhoneNumber(cellphone);
     }
     
-} //end of class
+} // end of class
