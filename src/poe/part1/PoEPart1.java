@@ -52,7 +52,7 @@ public class PoEPart1 {
             boolean loginSuccess = register.loginUser(loginUsername, loginPassword);
             System.out.println(register.returnLoginStatus(loginSuccess));
 
-            // Part 2 Integration: Launch QuickChat menu if login succeeds
+            // Part 2 & Part 3 Integration: Launch QuickChat menu if login succeeds
             if (loginSuccess) {
                 System.out.println("\n==============================");
                 System.out.println("Welcome to QuickChat.");
@@ -66,19 +66,27 @@ public class PoEPart1 {
                     System.out.println("1) Send Messages");
                     System.out.println("2) Show recently sent messages");
                     System.out.println("3) Quit");
-                    System.out.print("Enter option (1-3): ");
+                    System.out.println("4) Stored Messages");
+                    System.out.print("Enter option (1-4): ");
 
-                    int choice = scan.nextInt();
-                    scan.nextLine(); // Clear scanner buffer
+                    String rawChoice = scan.nextLine().trim();
+                    int choice;
+                    try {
+                        choice = Integer.parseInt(rawChoice);
+                    } catch (NumberFormatException e) {
+                        System.out.println("\nInvalid option. Please enter 1, 2, 3, or 4.");
+                        continue;
+                    }
 
                     switch (choice) {
                         case 1 -> messageManager.sendingMessages();
-                        case 2 -> System.out.println("\nComing Soon.");
+                        case 2 -> messageManager.printMessages();
                         case 3 -> {
                             System.out.println("\nThank you for using QuickChat. Goodbye!");
                             running = false;
                         }
-                        default -> System.out.println("\nInvalid option. Please enter 1, 2, or 3.");
+                        case 4 -> messageManager.storedMessagesMenu();
+                        default -> System.out.println("\nInvalid option. Please enter 1, 2, 3, or 4.");
                     }
                 }
             }

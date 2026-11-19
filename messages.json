@@ -1,0 +1,21 @@
+{
+  "messageID": "3595836477",
+  "recipient": "0768869255",
+  "message": "Hi sam how are you",
+  "messageHash": "35:2:HIYOU",
+  "sender": "Kail"
+}
+{
+  "messageID": "6606399065",
+  "recipient": "0768869233",
+  "message": "hi",
+  "messageHash": "66:1:HIHI",
+  "sender": "kail"
+}
+{
+  "messageID": "1699146488",
+  "sender": "kail",
+  "recipient": "0812452345",
+  "message": "hello",
+  "messageHash": "16:2:HELLOHELLO"
+}
